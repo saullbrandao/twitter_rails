@@ -1,0 +1,14 @@
+<li id="tweet-<%= tweet.id %>">
+  <%= link_to gravatar_for(tweet.user, size: 50), tweet.user %>
+  <span class="user"><%= link_to tweet.user.name, tweet.user %></span>
+  <span class="content">
+    <%= tweet.content %>
+    <%= image_tag tweet.display_image if tweet.image.attached? %>
+  </span>
+  <span class="timestamp">
+    Posted <%= time_ago_in_words(tweet.created_at) %> ago.
+    <% if current_user?(tweet.user) %>
+      <%= link_to "delete", tweet, method: :delete, data: { confirm: "Are you sure?" }  %>
+    <% end %>
+  </span>
+</li>
